@@ -147,7 +147,6 @@ function ScanOverlay({count}) {
   const [phase, setPhase] = useState(0);
   const [particles, setParticles] = useState([]);
   const [lineY, setLineY] = useState(0);
-  const animRef = useRef(null);
   const startRef = useRef(null);
   const containerRef = useRef(null);
 
