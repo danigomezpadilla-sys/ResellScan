@@ -480,8 +480,8 @@ export default function ResellScan() {
         imageContents.push({type:"text",text:`Perspectiva ${i+1}: ${PHOTO_SLOTS[i].label}`});
       }
       imageContents.push({type:"text",text:`Analiza estas ${filledCount} perspectivas del mismo objeto para identificarlo con precisión y busca sus precios de reventa en España. Responde solo con el JSON.`});
-      const apiKey = process.env.REACT_APP_GEMINI_KEY; const res=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,{
-        method:"POST",headers:{"Content-Type":"application/json"},
+      const {GoogleGenerativeAI}=await import('@google/generative-ai');const genAI=new GoogleGenerativeAI(process.env.REACT_APP_GEMINI_KEY);const model=genAI.getGenerativeModel({model:'gemini-1.5-flash'});const res=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.REACT_APP_GEMINI_KEY}`,{/gemini-1.5-flash:generateContent?key=${apiKey}`,{
+        method:"POST",headers:{"Content-Type":"application/json","anthropic-version":"2023-06-01"},
         body:JSON.stringify({
           model:"claude-sonnet-4-20250514",max_tokens:1000,
           tools:[{type:"web_search_20250305",name:"web_search"}],
