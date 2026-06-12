@@ -480,7 +480,7 @@ export default function ResellScan() {
         imageContents.push({type:"text",text:`Perspectiva ${i+1}: ${PHOTO_SLOTS[i].label}`});
       }
       imageContents.push({type:"text",text:`Analiza estas ${filledCount} perspectivas del mismo objeto para identificarlo con precisión y busca sus precios de reventa en España. Responde solo con el JSON.`});
-      const res=await fetch("https://api.anthropic.com/v1/messages",{
+      const apiKey = process.env.REACT_APP_GEMINI_KEY; const res=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,{
         method:"POST",headers:{"Content-Type":"application/json"},
         body:JSON.stringify({
           model:"claude-sonnet-4-20250514",max_tokens:1000,
